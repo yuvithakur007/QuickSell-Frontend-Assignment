@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { CDropdownMenu, CDropdownItem, CDropdownToggle } from "@coreui/react";
 import '../style/navbar.css';
 
-function Navbar({ setSelectedGrouping }) {
+function Navbar({ setSelectedGrouping ,sortBy, setSortBy}) {
   const selectedGrouping = localStorage.getItem('selectedGrouping')|| 'user';
+
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const [isStatusDropdownVisible, setStatusDropdownVisible] = useState(false);
   const [isPriorityDropdownVisible, setPriorityDropdownVisible] = useState(false);
@@ -12,7 +13,7 @@ function Navbar({ setSelectedGrouping }) {
 
   // Dropdown options
   const statusOptions = ['user', 'status', 'priority'].filter(option => option !== selectedGrouping);
-  const orderingOptions = ['Title', 'Priority'].filter(option => option !== orderingValue);
+  const orderingOptions = ['title', 'priority'].filter(option => option !== orderingValue);
 
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
@@ -33,8 +34,9 @@ function Navbar({ setSelectedGrouping }) {
   };
 
   const handleOrderingItemClick = (value) => {
+    setSortBy(value);
     setOrderingValue(value);
-    setPriorityDropdownVisible(false);
+    setPriorityDropdownVisible(true);
   };
 
   return (

@@ -4,12 +4,10 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 
-function Todos({ setSelectedGrouping}) {
+function Todos({ setSelectedGrouping,sortBy,setSortBy}) {
   const [allData, setAllData] = useState({ tickets: [], users: [] });
-  const [sortBy, setSortBy] = useState('priority'); 
   const [sortOrder, setSortOrder] = useState('desc');
   const selectedGrouping = localStorage.getItem('selectedGrouping') || 'user';
-  console.log(selectedGrouping)
 
   
   useEffect(() => {
@@ -29,7 +27,11 @@ function Todos({ setSelectedGrouping}) {
     const user = allData.users.find((user) => user.id === userID);
     return  user.available; 
   };
-
+  allData.users.sort((a, b) => {
+    const nameA = a.name.toLowerCase();
+    const nameB = b.name.toLowerCase();
+    return nameA.localeCompare(nameB);
+  });
   const handleSortByPriority = () => {
     if (sortBy === 'priority') {
       setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
@@ -43,20 +45,17 @@ function Todos({ setSelectedGrouping}) {
     if (sortBy === 'title') {
       setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
     } else {
-      // Set sorting to title and default to ascending order
+
       setSortBy('title');
       setSortOrder('asc');
     }
   };
 
-  // Sort tickets based on the selected sorting criteria and order
   const sortedTickets = allData.tickets.sort((a, b) => {
     if (sortBy === 'priority') {
-      // Sort by priority
       const priorityDiff = a.priority - b.priority;
       return sortOrder === 'asc' ? priorityDiff : -priorityDiff;
     } else if (sortBy === 'title') {
-      // Sort by title
       const titleA = a.title.toLowerCase();
       const titleB = b.title.toLowerCase();
       const titleComparison = titleA.localeCompare(titleB);

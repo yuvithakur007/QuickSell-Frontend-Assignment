@@ -3,7 +3,8 @@ import { MdOutlineSignalCellularAlt1Bar } from "react-icons/md";
 import { MdSignalCellularAlt2Bar } from "react-icons/md";
 import { MdSignalCellularAlt } from "react-icons/md";
 import { HiBellAlert } from "react-icons/hi2";
-
+import { FcHighPriority } from "react-icons/fc";
+import { HiMiniEllipsisHorizontal } from "react-icons/hi2";
 
 function Todo(props) {
   const {groupedTickets,user,priority,groupMode,status} = props;
@@ -22,11 +23,12 @@ function Todo(props) {
   };
 
   const priorityIconMapping = {
-    0: <HiBellAlert />,
+    0: <HiMiniEllipsisHorizontal/>  ,
     1: <MdOutlineSignalCellularAlt1Bar/>,
     2: <MdSignalCellularAlt2Bar/>,
     3: <MdSignalCellularAlt/>,
-    4: <HiBellAlert/>
+    4: <FcHighPriority />
+
   };
   
   const renderPriorityIcon = (level) => {
