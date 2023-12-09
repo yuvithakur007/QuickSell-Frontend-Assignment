@@ -140,3 +140,8 @@
 }
 
 
+@media (max-width: 768px) {
+    .todo {
+      width: 100%;
+    }
+  }

@@ -130,3 +130,16 @@
   background-color: white;
   width: 70px;
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    height: auto; 
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .dropdown-container {
+    margin: 10px 0; 
+  }
+
+}

@@ -3,3 +3,9 @@
     overflow-y: hidden;
     overflow-x: hidden;
 }
+
+@media (max-width: 768px) {
+    .todos {
+      flex-direction: column;
+    }
+}

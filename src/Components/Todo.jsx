@@ -2,7 +2,6 @@ import '../style/todo.css'
 import { MdOutlineSignalCellularAlt1Bar } from "react-icons/md";
 import { MdSignalCellularAlt2Bar } from "react-icons/md";
 import { MdSignalCellularAlt } from "react-icons/md";
-import { HiBellAlert } from "react-icons/hi2";
 import { FcHighPriority } from "react-icons/fc";
 import { HiMiniEllipsisHorizontal } from "react-icons/hi2";
 
