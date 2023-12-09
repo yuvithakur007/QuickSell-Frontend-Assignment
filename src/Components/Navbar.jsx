@@ -2,17 +2,17 @@ import { useState } from 'react';
 import { CDropdownMenu, CDropdownItem, CDropdownToggle } from "@coreui/react";
 import '../style/navbar.css';
 
-function Navbar({ selectedGrouping, setSelectedGrouping }) {
+function Navbar({ setSelectedGrouping }) {
+  const selectedGrouping = localStorage.getItem('selectedGrouping')|| 'user';
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const [isStatusDropdownVisible, setStatusDropdownVisible] = useState(false);
   const [isPriorityDropdownVisible, setPriorityDropdownVisible] = useState(false);
 
-  // States to manage the current selected values
   const [orderingValue, setOrderingValue] = useState('priority');
 
   // Dropdown options
   const statusOptions = ['user', 'status', 'priority'].filter(option => option !== selectedGrouping);
-  const orderingOptions = ['Title', 'Date', 'Priority'].filter(option => option !== orderingValue);
+  const orderingOptions = ['Title', 'Priority'].filter(option => option !== orderingValue);
 
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
@@ -28,12 +28,13 @@ function Navbar({ selectedGrouping, setSelectedGrouping }) {
 
   const handleGroupingItemClick = (value) => {
     setSelectedGrouping(value);
-    setStatusDropdownVisible(false); // Close the dropdown after selection
+    localStorage.setItem('selectedGrouping' ,value );
+    setStatusDropdownVisible(false);
   };
 
   const handleOrderingItemClick = (value) => {
     setOrderingValue(value);
-    setPriorityDropdownVisible(false); // Close the dropdown after selection
+    setPriorityDropdownVisible(false);
   };
 
   return (
@@ -84,7 +85,6 @@ function Navbar({ selectedGrouping, setSelectedGrouping }) {
                   )}
                 </div>
               </div>
-              {/* Add more dropdown items here */}
             </div>
           )}
         </div>

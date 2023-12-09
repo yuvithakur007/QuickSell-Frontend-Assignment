@@ -4,12 +4,14 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 
-function Todos({selectedGrouping ,setSelectedGrouping }) {
+function Todos({ setSelectedGrouping}) {
   const [allData, setAllData] = useState({ tickets: [], users: [] });
-  // const [selectedGrouping, setSelectedGrouping] = useState('user');
-  const [sortBy, setSortBy] = useState('priority'); // Default sorting by priority
-  const [sortOrder, setSortOrder] = useState('desc'); // Default sorting order is descending
+  const [sortBy, setSortBy] = useState('priority'); 
+  const [sortOrder, setSortOrder] = useState('desc');
+  const selectedGrouping = localStorage.getItem('selectedGrouping') || 'user';
+  console.log(selectedGrouping)
 
+  
   useEffect(() => {
     axios.get('https://api.quicksell.co/v1/internal/frontend-assignment')
       .then((res) => {
@@ -18,6 +20,8 @@ function Todos({selectedGrouping ,setSelectedGrouping }) {
       .catch((err) => {
         console.log(err);
       });
+      const storedValue = localStorage.getItem('selectedGrouping');
+    	setSelectedGrouping(storedValue || 'user');
   }, []);
 
   const isUserAvailable = (userID) => {

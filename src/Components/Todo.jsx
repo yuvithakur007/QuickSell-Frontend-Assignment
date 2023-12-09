@@ -94,14 +94,13 @@ function Todo(props) {
          {groupedTickets.map((data)=>{
            const isUserAvailable = props.isUserAvailable
            const userAvailable = isUserAvailable(data.userId);
-           console.log(userAvailable);
           return(
             <div key={data.id} className='todo-task'>
             <div className='todo-task-header'>
        
               <h1>{data.id}</h1>
               {groupMode!='user'? <>
-              <img src='https://images.unsplash.com/photo-1618193139062-2c5bf4f935b7?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29uJTIwbG9nb3xlbnwwfHwwfHx8MA%3D%3D'/>
+              <img src="https://images.unsplash.com/photo-1618193139062-2c5bf4f935b7?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29uJTIwbG9nb3xlbnwwfHwwfHx8MA%3D%3D" alt="profile-image"/>
             <style>
             {`
               .todo-task-header::before {
@@ -130,31 +129,6 @@ function Todo(props) {
          </div>
           )
          })}
-
-
-
-
-          {/* {
-           groupedStatus.map((data)=>{
-            return(
-              <div key={data.id} className='todo-task'>
-              <h1>{data.id}</h1>
-              <div className='todo-task-text'>
-              <i className="fa-regular fa-circle"></i>
-              <p>{data.title}</p>
-              </div>
-  
-              <div className='todo-task-options'>
-              <i className="fa-solid fa-ellipsis"></i>
-               <div className='todo-task-options-request'>
-               <i className="fa-solid fa-circle"></i>
-                <p>Feature Request</p>
-              </div> 
-              </div>
-           </div>
-            )
-           })
-         } */}
     </div>
   )
 }
